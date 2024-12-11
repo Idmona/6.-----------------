@@ -42,17 +42,10 @@ def on_ask_change(edit, new_edit_text):
     reply.set_text("Рейтинг этого пароля: %s" % str(score))
 
 
-password_edit = urwid.Edit("Введите пароль: ", mask="*")
-reply = urwid.Text("Рейтинг этого пароля: 0")
-
-pile = urwid.Pile([password_edit, reply])
-main = urwid.Filler(pile)
-
-
-def main_loop():
+if __name__ == "__main__":
+    password_edit = urwid.Edit("Введите пароль: ", mask="*")
+    reply = urwid.Text("")
+    pile = urwid.Pile([password_edit, reply])
+    main = urwid.Filler(pile, valign='top')
     urwid.connect_signal(password_edit, 'change', on_ask_change)
     urwid.MainLoop(main).run()
-
-
-if __name__ == "__main__":
-    main_loop()
